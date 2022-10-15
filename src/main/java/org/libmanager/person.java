@@ -1,6 +1,8 @@
 package org.libmanager;
 
-public class person {
+import java.io.Serializable;
+
+public class person implements Serializable {
     String ID;
     String name;
     String surname;

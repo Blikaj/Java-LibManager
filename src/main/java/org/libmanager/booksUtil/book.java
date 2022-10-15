@@ -3,10 +3,10 @@ package org.libmanager.booksUtil;
 import java.io.Serializable;
 
 public class book implements Serializable {
-    static String ID;
-    static String name;
-    static String author;
-    static Boolean status;
+    String ID;
+    String name;
+    String author;
+    Boolean status;
 
     public book(String ID, String name, String author) {
         this.ID = ID;
@@ -39,7 +39,7 @@ public class book implements Serializable {
         this.author = author;
     }
 
-    public static Boolean getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
