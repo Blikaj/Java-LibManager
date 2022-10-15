@@ -1,22 +1,23 @@
 package org.libmanager.booksUtil;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class shelve {
+public class shelve implements Serializable {
 
-    int ID;
+    String ID;
     ArrayList<book> booksList;
 
-    public shelve(int ID, ArrayList<book> booksList) {
+    public shelve(String ID, ArrayList<book> booksList) {
         this.ID = ID;
         this.booksList = booksList;
     }
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 

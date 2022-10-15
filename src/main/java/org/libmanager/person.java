@@ -1,26 +1,24 @@
 package org.libmanager;
 
-import java.util.ArrayList;
-
 public class person {
-    int ID;
+    String ID;
     String name;
     String surname;
     String address;
     int libOC;
 
-    public person(int ID, String name, String surname, String address) {
+    public person(String ID, String name, String surname, String address) {
         this.ID = ID;
         this.name = name;
         this.surname = surname;
         this.address = address;
     }
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 

@@ -1,8 +1,8 @@
 package org.libmanager.booksUtil;
 
-import java.util.Objects;
+import java.io.Serializable;
 
-public class book {
+public class book implements Serializable {
     static String ID;
     static String name;
     static String author;

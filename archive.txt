@@ -1,0 +1,48 @@
+archive{
+    shelve{
+        ID:sh01;
+        bookList:{
+            book{
+                ID:bk001;
+                name:Dune;
+                author:Frank Herbert;
+                status:1;
+            };
+            book{
+                ID:bk002;
+                name:Dune Messiah;
+                author:Frank Herbert;
+                status:1;
+            };
+            book{
+                ID:bk003;
+                name:Children Of Dune;
+                author:Frank Herbert;
+                status:0;
+            };
+        };
+    };
+    shelve{
+        ID:sh02;
+        bookList:{
+            book{
+                ID:bk004;
+                name:1000 Best Jokes About Fishing;
+                author:Ron Gilbert;
+                status:0;
+            };
+            book{
+                ID:bk005;
+                name:Modern Torture Made Easy;
+                author:Ron Gilbert;
+                status:1;
+            };
+            book{
+                ID:bk006;
+                name:Dueling For Dummies;
+                author:Ron Gilbert;
+                status:1;
+            };
+        };
+    };
+}

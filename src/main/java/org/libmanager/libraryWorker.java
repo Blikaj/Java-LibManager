@@ -2,14 +2,15 @@ package org.libmanager;
 
 import org.libmanager.booksUtil.book;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class libraryWorker extends person{
+public class libraryWorker extends person implements Serializable {
     int libOC;
     ArrayList<book> booksGiven;
 
-    public libraryWorker(int ID, String name, String surname, String address, int libOC) {
+    public libraryWorker(String ID, String name, String surname, String address, int libOC) {
         super(ID, name, surname, address);
         this.libOC = libOC;
     }

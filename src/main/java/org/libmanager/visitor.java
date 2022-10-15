@@ -2,14 +2,15 @@ package org.libmanager;
 
 import org.libmanager.booksUtil.book;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class visitor extends person{
+public class visitor extends person implements Serializable {
 
     ArrayList<book> booksTaken;
 
 
-    public visitor(int ID, String name, String surname, String address) {
+    public visitor(String ID, String name, String surname, String address) {
         super(ID, name, surname, address);
     }
 
