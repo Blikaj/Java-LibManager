@@ -69,9 +69,9 @@ public class generator {
     }
 
     private static void writeEmployeeArchive(){
-        libraryWorker employe1 = new libraryWorker("lw01", "Ivan", "Petrov", "Moscow", 1);
-        libraryWorker employe2 = new libraryWorker("lw01", "Nikolay", "Baskov", "Moscow", 2);
-        libraryWorker employe3 = new libraryWorker("lw01", "Vasily", "Krolikow", "Moscow", 1);
+        libraryWorker employe1 = new libraryWorker("lw01", "Ivan", "Petrov", "Moscow");
+        libraryWorker employe2 = new libraryWorker("lw02", "Nikolay", "Baskov", "Moscow");
+        libraryWorker employe3 = new libraryWorker("lw03", "Vasily", "Krolikow", "Moscow");
         ArrayList<libraryWorker> employees = new ArrayList<libraryWorker>();
         employees.add(employe1);
         employees.add(employe2);

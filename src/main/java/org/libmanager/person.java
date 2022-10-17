@@ -7,7 +7,6 @@ public class person implements Serializable {
     String name;
     String surname;
     String address;
-    int libOC;
 
     public person(String ID, String name, String surname, String address) {
         this.ID = ID;

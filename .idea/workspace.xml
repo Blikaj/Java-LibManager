@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="185dff4c-2509-4097-9311-723e2e95a4da" name="Changes" comment="V 0.2 | Added generator.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/libmanager/booksUtil/book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/libmanager/booksUtil/book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/libmanager/generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/libmanager/generator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/libmanager/libraryWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/libmanager/libraryWorker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/libmanager/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/libmanager/main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/libmanager/person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/libmanager/person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/libmanager/visitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/libmanager/visitor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

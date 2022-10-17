@@ -16,7 +16,7 @@ public class visitor extends person implements Serializable {
 
     public ArrayList<String> booksTaken() {
         ArrayList<String> books = new ArrayList<>();
-        for (book book : booksTaken) {
+        for (book book : this.booksTaken) {
             if(book.getStatus() == Boolean.FALSE)
             {
                 books.add(book.getName());
@@ -28,7 +28,7 @@ public class visitor extends person implements Serializable {
 
     public ArrayList<String> booksReturned() {
         ArrayList<String> books = new ArrayList<>();
-        for (book book : booksTaken) {
+        for (book book : this.booksTaken) {
             if(book.getStatus() == Boolean.TRUE)
             {
                 books.add(book.getID());
@@ -38,4 +38,11 @@ public class visitor extends person implements Serializable {
         return books;
     }
 
+    public ArrayList<book> getBooksTaken() {
+        return booksTaken;
+    }
+
+    public void setBooksTaken(ArrayList<book> booksTaken) {
+        this.booksTaken = booksTaken;
+    }
 }

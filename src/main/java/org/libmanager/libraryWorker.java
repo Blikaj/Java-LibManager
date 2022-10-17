@@ -3,23 +3,28 @@ package org.libmanager;
 import org.libmanager.booksUtil.book;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class libraryWorker extends person implements Serializable {
-    int libOC;
     ArrayList<book> booksGiven;
 
-    public libraryWorker(String ID, String name, String surname, String address, int libOC) {
+    public libraryWorker(String ID, String name, String surname, String address) {
         super(ID, name, surname, address);
-        this.libOC = libOC;
     }
 
-    public ArrayList<String> booksGiven() {
+    public ArrayList<String> booksGivenIDs() {
         ArrayList<String> Books = new ArrayList<>();
         for (book book : booksGiven) {
             Books.add(book.getID());
         }
         return Books;
+    }
+
+    public ArrayList<book> getBooksGiven() {
+        return this.booksGiven;
+    }
+
+    public void setBooksGiven(ArrayList<book> booksGiven) {
+        this.booksGiven = booksGiven;
     }
 }
