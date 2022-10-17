@@ -2,7 +2,7 @@ package org.libmanager;
 
 import java.io.Serializable;
 
-public class person implements Serializable {
+public class person implements Serializable { // имплементирует Serializable, чтобы можно было записать объект в файл
     String ID;
     String name;
     String surname;
@@ -13,7 +13,7 @@ public class person implements Serializable {
         this.name = name;
         this.surname = surname;
         this.address = address;
-    }
+    } // простой конструктор класса, ниже геттеры и сеттеры всех полей
 
     public String getID() {
         return ID;
@@ -49,7 +49,8 @@ public class person implements Serializable {
 
     /*public int getLibOC() {
         return libOC;
-    }
+    } // libOC - значение должности в библиотеке. Было сначало перемещено в класс работника, а позже удалено
+    //из-за ненадобности
 
     public void setLibOC(int libOC) {
         this.libOC = libOC;
@@ -57,7 +58,7 @@ public class person implements Serializable {
 
     /*public ArrayList<String> booksTaken() {
         return null;
-    }
+    } // также методы, которые должны были быть у сотрудников (booksTaken ещё и у посетителей)
 
     public ArrayList<String> booksReturned() {
         return null;

@@ -2,7 +2,7 @@ package org.libmanager.booksUtil;
 
 import java.io.Serializable;
 
-public class book implements Serializable {
+public class book implements Serializable { // имплементирует Serializable, чтобы можно было записать объект в файл
     String ID;
     String name;
     String author;
@@ -13,8 +13,10 @@ public class book implements Serializable {
         this.name = name;
         this.author = author;
         this.status = Boolean.TRUE;
-    }
+    } // при инициализации экземпляра класса требует айди, название и имя автора. Статус изначально true, тк только
+    // что добавленная книга 100% доступна
 
+    // ниже - геттеры и сеттеры полей класса
     public String getID() {
         return ID;
     }

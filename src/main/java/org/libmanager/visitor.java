@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class visitor extends person implements Serializable {
 
-    ArrayList<book> booksTaken;
+    ArrayList<book> booksTaken; // список книг, когда-либо взятых. Изначально пуст, но ниже есть геттеры и сеттеры
 
 
     public visitor(String ID, String name, String surname, String address) {
@@ -24,7 +24,8 @@ public class visitor extends person implements Serializable {
 
         }
         return books;
-    }
+    } // неиспользуемый метод, изначально должен был выводить список названий взятых книг, но оказалось удобней
+    // выводить его в виде списка объектов книг
 
     public ArrayList<String> booksReturned() {
         ArrayList<String> books = new ArrayList<>();

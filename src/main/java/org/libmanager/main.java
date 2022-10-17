@@ -13,14 +13,11 @@ import java.util.Scanner;
 
 public class main {
 
-    ArrayList<libraryWorker> employeeList;
-    ArrayList<visitor> visitorsList;
-
     public static void main(String[] args) {
-        ArrayList<shelve> archive = getArchive();
-        ArrayList<visitor> visitors = getVisitors();
-        ArrayList<libraryWorker> employees = getEmployees();
-        //System.out.println(archive);
+        ArrayList<shelve> archive = getArchive(); // получение объекта списка полок с книгами
+        ArrayList<visitor> visitors = getVisitors(); // получение объекта списка с посетителями библиотеки
+        ArrayList<libraryWorker> employees = getEmployees(); // получение списка сотрудников
+        //System.out.println(archive);  // отладка, просмотр корректности получения объекта из файла
         //System.out.println(archive.get(1).getID());
         Scanner in=new Scanner(System.in);
         String ch = "-1";
@@ -40,27 +37,27 @@ public class main {
             ch = in.next();
             switch(ch){
                 case "0" -> {
-                    printBookList(archive);
+                    printBookList(archive); // печать всего списка книг, сортировка по полкам
                     break;
                 }
                 case "1" -> {
-                    getVisitorInfo(visitors, in);
+                    getVisitorInfo(visitors, in); // получение информации о посетителях по айди
                     break;
                 }
                 case "2" -> {
-                    getEmployeeInfo(employees, in);
+                    getEmployeeInfo(employees, in); // получение информации о сотрудниках по айди
                     break;
                 }
                 case "3" -> {
-                    giveBook(archive, employees, visitors, in);
+                    giveBook(archive, employees, visitors, in); // выдача книги посетителю работником
                     break;
                 }
                 case "4" -> {
-                    returnBook(archive, employees, visitors, in);
+                    returnBook(archive, employees, visitors, in); // возврат книги от посетителя
                     break;
                 }
                 case "5" -> {
-                    addBook(archive, in);
+                    addBook(archive, in); // добавление новой книги в архив
                     break;
                 }
                 case "6" -> {
@@ -78,10 +75,10 @@ public class main {
     }
 
     private static ArrayList<shelve> getArchive() {
-        ArrayList<shelve> shelveArchive = new ArrayList<shelve>();
+        ArrayList<shelve> shelveArchive = new ArrayList<shelve>(); // инициализация списка полок с книгами, объект сохраняется именно в таком виде
         try{
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("shelveArchive.dat"));
-            shelveArchive = ((ArrayList<shelve>) ois.readObject());
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("shelveArchive.dat")); // создание потока получения объекта
+            shelveArchive = ((ArrayList<shelve>) ois.readObject()); // чтение объекта из файла ^
             System.out.println("Data reading success");
         } catch(Exception e) {
             System.out.println("Data reading failed");
@@ -98,7 +95,7 @@ public class main {
         return shelveArchive;
     }
 
-    private static ArrayList<visitor> getVisitors() {
+    private static ArrayList<visitor> getVisitors() { // то же самое, что и метод выше, но получает список посетителей из файла
         ArrayList<visitor> visitors = new ArrayList<visitor>();
         try{
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream("visitors.dat"));
@@ -113,7 +110,7 @@ public class main {
         return visitors;
     }
 
-    private static ArrayList<libraryWorker> getEmployees() {
+    private static ArrayList<libraryWorker> getEmployees() { // то же самое, что и метод выше, но получает список работников из файла
         ArrayList<libraryWorker> employees = new ArrayList<libraryWorker>();
         try{
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream("employees.dat"));
@@ -129,30 +126,31 @@ public class main {
     }
 
     private static void printBookList(ArrayList<shelve> shelves) {
-        for(shelve shelve : shelves) {
-            for (book book : shelve.getBooksList()) {
+        for(shelve shelve : shelves) { // цикл по кажной из полок
+            for (book book : shelve.getBooksList()) { // получение списка книг в полке и проход по каждой из книг
                 System.out.println(book.getID()+":"+book.getName()+":"+book.getAuthor()+" Status:"+book.getStatus()+";");
             }
         }
     }
 
     private static void addBook(ArrayList<shelve> shelves, Scanner in) {
-        System.out.println("Input new book information");
+        System.out.println("Input new book information"); // здесь по очереди определяются переменные ID, названия и автора киги
         System.out.println("Input new book ID");
         String id = in.next();
         System.out.println("Input new book name");
         String name = in.next();
         System.out.println("Input new book author");
         String author = in.next();
-        book newbook = new book(id, name, author);
-        System.out.println("Input shelve ID to store the book");
+        book newbook = new book(id, name, author); // создается новый объект книги
+        System.out.println("Input shelve ID to store the book"); // получается ID полки, в которую помещается книга
         String shelveID = in.next();
         for (shelve shelve : shelves) {
             if(shelve.getID().equals(shelveID)) {
                 shelve.getBooksList().add(newbook);
-            }
+            } // из полки получается список книг, в который добавляется новая.
+            //надо бы сделать обработчик события, где список книг пуст, а также функцию создания новой полки
         }
-        try {
+        try { // запись в файл с помощью потока вывода объектов
             FileOutputStream fos = new FileOutputStream("shelveArchive.dat");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(shelves);
@@ -165,6 +163,7 @@ public class main {
         }
     }
     private static void reWrite(ArrayList<shelve> shelves, ArrayList<visitor> visitors, ArrayList<libraryWorker> employees) {
+        // эту функцию добавил, чтобы не копировать сто раз цикл переписи одного объекта, поэтому тут переписываются сразу все три
         try {
             FileOutputStream fos = new FileOutputStream("shelveArchive.dat");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -205,6 +204,11 @@ public class main {
         String bID;
         String vID;
         book givenbook = null;
+        // здесь проводится три цикла:
+        // поиск книги по введенному ID, проверка того, есть ли она, доступна ли она к выдаче и
+        // изменение её статуса на недоступную;
+        // поиск сотрудника, который выдаст книгу, добавление книги в список выданных им;
+        // поиск посетителя, который книгу возьмёт, добавление книги в список взятых им;
         while (cond) {
             System.out.println("Input book id to give");
             bID = in.next();
@@ -270,12 +274,16 @@ public class main {
             }
         };
         System.out.println("Book was given to the visitor!");
-        reWrite(shelves, visitors, employees);
+        reWrite(shelves, visitors, employees); //после - перепись всех файлов
     }
     private static void returnBook(ArrayList<shelve> shelves, ArrayList<libraryWorker> employees, ArrayList<visitor> visitors, Scanner in){
         Boolean cond = true;
-        String bID = null;
+        String bID;
         String vID;
+        // тут практически обратный предыдущей функции цикл
+        // поиск посетителя и поиск книги среди тех, которые он взял, изменение статуса книги на доступную
+        // перепись файлов
+        // массив с работниками тут не трогаю, тк нет надобности
         while (cond) {
             System.out.println("Input visitor id to give to");
             vID = in.next();
@@ -315,6 +323,8 @@ public class main {
         for (libraryWorker i : employees){
             System.out.println(i.getID());
         }
+        // тут вывод ID всех сотрудников ^
+        // а дальше вывод всей информации по ID при совпадении
         System.out.println("Input employee ID to see info");
         String eID = in.next();
         for (libraryWorker i : employees) {
@@ -337,6 +347,8 @@ public class main {
         for (visitor i : visitors){
             System.out.println(i.getID());
         }
+        // тут вывод ID всех посетителей ^
+        // а дальше вывод всей информации по ID при совпадении
         System.out.println("Input employee ID to see info");
         String eID = in.next();
         for (visitor i : visitors) {
