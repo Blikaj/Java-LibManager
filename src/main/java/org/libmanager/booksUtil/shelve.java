@@ -2,6 +2,8 @@ package org.libmanager.booksUtil;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.TreeSet;
 
 public class shelve implements Serializable { // имплементирует Serializable, чтобы можно было записать объект в файл
 
@@ -27,5 +29,31 @@ public class shelve implements Serializable { // имплементирует Se
 
     public void setBooksList(ArrayList<book> booksList) {
         this.booksList = booksList;
+    }
+
+    public void getStat(){
+        Integer truestat = 0;
+        Integer falsestat = 0;
+        HashMap authors = new HashMap();
+        for (book book : booksList) {
+            if(book.getStatus()) {
+                truestat ++;
+            } else {
+                falsestat ++;
+            }
+            String auth = book.getAuthor();
+            if (!(authors.containsKey(auth))) {
+                authors.put(auth, (Integer) 1);
+            } else {
+                authors.put(auth, ((Integer) authors.get(auth) + 1));
+            }
+        }
+        System.out.println("ID полки: "+ID);
+        System.out.println("Количество книг в наличии: "+truestat);
+        System.out.println("Количество отсутствующих книг: "+falsestat);
+        System.out.println("Статистика по авторам: ");
+        authors.forEach((key, value) -> {
+            System.out.println(key+": "+value);
+        });
     }
 }

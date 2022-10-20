@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class main {
@@ -21,7 +22,7 @@ public class main {
         //System.out.println(archive.get(1).getID());
         Scanner in=new Scanner(System.in);
         String ch = "-1";
-        while (ch != "6") {
+        while (ch != "8") {
             System.out.println(
                     """
                             ============Text Main Menu =============
@@ -32,7 +33,9 @@ public class main {
                             3- give book to visitor
                             4- return book from visitor
                             5- add new book
-                            6- exit
+                            6- get stat about shelves
+                            7- get city stat
+                            8- exit
                             """);
             ch = in.next();
             switch(ch){
@@ -61,7 +64,30 @@ public class main {
                     break;
                 }
                 case "6" -> {
-                    ch = "6";
+                    for (shelve i : archive){
+                        i.getStat();
+                    }
+                }
+                case "7" -> {
+                    System.out.println("""
+                                           Select stat to show:
+                                           1- employee stat
+                                           2- visitors stat
+                                           """);
+                    String sh = in.next();
+                    switch(sh){
+                        case "1" -> {
+                            citystat(employees);
+                            break;
+                        }
+                        case "2" -> {
+                            citystat(visitors);
+                            break;
+                        }
+                    }
+                }
+                case "8" -> {
+                    ch = "8";
                     break;
                 }
                 default -> {
@@ -365,5 +391,28 @@ public class main {
                 }
             }
         }
+    }
+
+    private static void citystat(ArrayList<? extends person> persarray) {
+        HashMap cities = new HashMap<>();
+        for (Object o : persarray){
+            if (o instanceof visitor) {
+                if (!(cities.containsKey(((visitor) o).getAddress()))) {
+                    cities.put(((visitor) o).getAddress(), (Integer) 1);
+                } else {
+                    cities.put(((visitor) o).getAddress(), ((Integer) cities.get(((visitor) o).getAddress()) + 1));
+                }
+            } else if (o instanceof libraryWorker) {
+                if (!(cities.containsKey(((libraryWorker) o).getAddress()))) {
+                    cities.put(((libraryWorker) o).getAddress(), (Integer) 1);
+                } else {
+                    cities.put(((libraryWorker) o).getAddress(), ((Integer) cities.get(((libraryWorker) o).getAddress()) + 1));
+                }
+            }
+        }
+        System.out.println("Статистика по городам: ");
+        cities.forEach((key, value) -> {
+            System.out.println(key+": "+value);
+        });
     }
 }
